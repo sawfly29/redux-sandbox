@@ -1,3 +1,6 @@
+import React from 'react'
+import ReactDOM, { render } from 'react-dom'
+import Counter from './counter'
 import {
   createStore, bindActionCreators
 } from 'redux'
@@ -8,33 +11,35 @@ const store = createStore(reducer);
 const {dispatch} = store
 const {dec, inc, rnd} = bindActionCreators(actions, dispatch)
 
-
-
-document
-  .getElementById('inc')
-  .addEventListener('click', () => {
-    inc()
-  })
-
-document
-  .getElementById('dec')
-  .addEventListener('click', () => {
-    dec()
-  })
-document
-  .getElementById('rnd')
-  .addEventListener('click', () => {
-    const payload = Math.floor(Math.random()*10);
-    rnd(payload)
-  })
-
-  const update = () => {
-    document
-    .getElementById('counter')
-    .innerHTML = store.getState()
+const update = () => {
+   
   }
 
-  store.subscribe(update)//функция сработает только после изменения state - эдакий листенер
+  ReactDOM.render(
+  <Counter/>, document.getElementById('root')
+)
+
+// document
+//   .getElementById('inc')
+//   .addEventListener('click', () => {
+//     inc()
+//   })
+
+// document
+//   .getElementById('dec')
+//   .addEventListener('click', () => {
+//     dec()
+//   })
+// document
+//   .getElementById('rnd')
+//   .addEventListener('click', () => {
+//     const payload = Math.floor(Math.random()*10);
+//     rnd(payload)
+//   })
+
+
+
+  //store.subscribe(update)//функция сработает только после изменения state - эдакий листенер
 
 
 //reducer должен быть чистой функцией: 
