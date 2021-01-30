@@ -1,23 +1,17 @@
 import React from 'react'
-import ReactDOM, { render } from 'react-dom'
-import Counter from './counter'
-import {
-  createStore, bindActionCreators
-} from 'redux'
+import ReactDOM from 'react-dom'
+import {createStore} from 'redux'
 import reducer from './reducer'
-import * as actions from './actions'
+import {Provider} from 'react-redux'
+import App from './components/app'
 
 const store = createStore(reducer);
-const {dispatch} = store
-const {dec, inc, rnd} = bindActionCreators(actions, dispatch)
 
-const update = () => {
-   
-  }
-
-  ReactDOM.render(
-  <Counter/>, document.getElementById('root')
+ReactDOM.render(
+<Provider store={store}>   <App /></Provider>, document.getElementById('root')
+ 
 )
+
 
 // document
 //   .getElementById('inc')
@@ -39,7 +33,7 @@ const update = () => {
 
 
 
-  //store.subscribe(update)//функция сработает только после изменения state - эдакий листенер
+//store.subscribe(update)//функция сработает только после изменения state - эдакий листенер
 
 
 //reducer должен быть чистой функцией: 
@@ -48,7 +42,6 @@ const update = () => {
 
 // 
 
-// store.subscribe(() => {console.log(store.getState())})
 
 // store.dispatch({type: 'INC'}) //обработка нового действия
 // store.dispatch({type: 'INC'})
